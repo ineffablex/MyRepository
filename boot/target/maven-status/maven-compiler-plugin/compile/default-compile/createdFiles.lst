@@ -1,0 +1,12 @@
+com\newland\boot\BootdoApplication.class
+com\newland\boot\service\AutoService.class
+com\newland\boot\utils\TemplateUtils.class
+com\newland\boot\utils\PageUtils.class
+com\newland\boot\controller\TaskDomainController.class
+com\newland\boot\service\impl\AutoServiceImpl.class
+com\newland\boot\domain\ProDetails.class
+com\newland\boot\controller\TaskController.class
+com\newland\boot\utils\WebConfig.class
+com\newland\boot\utils\zipcompress.class
+com\newland\boot\controller\testZip.class
+com\newland\boot\dao\AutoDao.class

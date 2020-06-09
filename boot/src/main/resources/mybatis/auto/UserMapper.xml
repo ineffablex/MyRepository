@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.newland.boot.dao.AutoDao">
+	<!-- <cache type = "org.mybatis.caches.ehcache.EhcacheCache"></cache> -->
+	
+	<select id="getPreCodes"   resultType = "java.lang.String">
+ 			select product_id from tester_case
+	</select>
+
+	<select id="getpreBzCodes"   resultType = "java.lang.String">
+ 			select product_id from month_fee_case
+	</select>
+	
+</mapper>

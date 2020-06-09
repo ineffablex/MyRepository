@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.newland.boot.dao.AutoDao">
+
+	<!--创建普通用户资料-->
+	 <select id="creatData" parameterType="java.util.HashMap"  statementType="CALLABLE" resultType = "java.lang.String">
+ 			 <![CDATA[
+				{call sp_create_cloud_testdata_best(#{proCode,mode=IN,jdbcType=VARCHAR},
+				#{feeSource,mode=IN,jdbcType=INTEGER},17,11,0,0,0,20150401, #{outPut,mode=OUT,jdbcType=VARCHAR},
+				#{userNum,mode=IN,jdbcType=INTEGER},0,3)}
+			]]>
+	</select>
+
+	<!--创建固定费用户资料-->
+	<select id="creatBizData" parameterType="java.util.HashMap"  statementType="CALLABLE" resultType = "java.lang.String">
+ 			 <![CDATA[
+				{call sp_create_cloud_testdata_best(#{proCode,mode=IN,jdbcType=VARCHAR},
+				#{feeSource,mode=IN,jdbcType=INTEGER},17,11,0,0,0,20150401, #{outPut,mode=OUT,jdbcType=VARCHAR},
+				1,1,3)}
+			]]>
+	</select>
+
+	<!--获取固定费用户数据-->
+	<select id="getBizData" parameterType="java.util.HashMap"  statementType="CALLABLE" resultType = "java.lang.String">
+ 			 <![CDATA[
+				{call SP_create_autotest_fx(#{proCode,mode=IN,jdbcType=VARCHAR},17,#{userId,mode=IN,jdbcType=INTEGER},#{i_out_decprd_info,mode=OUT,jdbcType=VARCHAR},
+				#{i_out_nomal_info,mode=OUT,jdbcType=VARCHAR},#{out_errsm,mode=OUT,jdbcType=VARCHAR})}
+			]]>
+	</select>
+
+	<!--获取用户收费类型-->
+	<select id="getFeeSource" parameterType="java.lang.String"  resultType = "java.lang.Integer">
+ 			 select t.fee_source  from ccb_rate_item t
+					where t.rate_entry_template_id in
+       				(select t.rate_entry_template_id from ccb_rate_entry t
+         			where t.rate_plan_id = #{value}) GROUP BY t.fee_source
+	</select>
+
+	<!--获取用户收费-->
+	<select id="getFeeTarget" parameterType="java.lang.String"  resultType = "java.lang.Integer">
+ 			 select t.fee_target  from ccb_rate_item t
+					where t.rate_entry_template_id in
+       				(select t.rate_entry_template_id from ccb_rate_entry t
+         			where t.rate_plan_id = #{value}) GROUP BY t.fee_target
+	</select>
+
+	<!--获取用户套餐类型-->
+	<select id="getBizDomain" parameterType="java.lang.String"  resultType = "java.lang.String">
+ 			select distinct biz_domain_codes from ccb_rate_entry_template
+ 					where rate_entry_template_id in
+       				(select rate_entry_template_id from ccb_rate_entry
+					where rate_plan_id = #{value})
+	</select>
+
+	<!--插入wlan表-->
+	<insert id="insertWlan">
+		insert into user_product (INSTANCE_ID, USER_ID, CITY_ID, PRODUCT_ID, PKG_PRODUCT_ID, GRP_USER_ID, STATUS, STATUS_DATE, START_DATE, END_DATE, RATE_PLAN_ID, PRODUCT_LEVEL, USED_TYPE, DONOR_USER_ID, CHANGE_DATE, SYNC_DATE, BILLING_FLAG, FAMILY_USER_ID, IS_RATE)
+		values (#{InstanceId}, #{userId}, '17', '2000004596', '', '', '0', null, sysdate, null, '1', '2', '1', '', null, null, '', '', '')
+	</insert>
+	
+</mapper>

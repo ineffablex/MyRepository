@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
+	xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<style>
+	.btn{
+		margin-top:10%;
+		margin-left:42%;
+		width:23%;
+		height:12%;
+		border:2px solid #00bbbb;
+		border-radius: 2px;
+		background-color:rgba(0,0,0,0.4);
+		cursor: pointer;
+		box-shadow: 1px 1px 7px #444;
+		position: relative;
+		transition:background-color 0.5s,border 0.5s;
+	}
+	.btn:hover{
+		background-color:rgba(0,0,0,0.1);
+		border:2px solid #00dddd;
+		transition:background-color 0.5s,border 0.5s;
+	}
+	.autotext{
+		position: absolute;
+    	top: 50%;
+   		left: 50%;
+    	transform: translate(-50%, -50%);
+    	width: 80%;
+    	height: 60%;
+    	text-align:center;
+    	font-family: "微软雅黑";
+    	font-size: 23px;
+    	color: #00bbbb;
+	}
+</style>
+<body style="background-image: url('/img/bg.jpg');no-repeat: center center;background-size: 100%;background-size:cover;background-attachment:fixed;">
+	<ul class="layui-nav">
+		<li class="layui-nav-item"><a href="">首页</a></li>
+	</ul>
+	<div style="margin: 0 auto;width: 85%;height: 90%;">
+		<div class="btn" id="btn1">
+			<span class = "autotext" >开始生成套餐用例</span>
+		</div>
+		<div class="btn" id="btn2">
+			<span class = "autotext" >开始生成固定费用例</span>
+		</div>
+	</div>
+
+	<div th:include="include::footer"></div>
+</body>
+
+
+<script>
+
+	var layer;
+	layui.use('layer', function() {
+		layer = layui.layer;
+	});
+	$("#btn1").click(function() {
+		layer.open({
+			type : 2,
+			title : '生成自动化用例',
+			maxmin : false,
+			shadeClose : false, // 点击遮罩关闭层
+			area : [ '50%', '65%' ],
+			content : '/toGenerate'
+		});
+	});
+
+	$("#btn2").click(function() {
+		layer.open({
+			type : 2,
+			title : '生成固定费自动化用例',
+			maxmin : false,
+			shadeClose : false, // 点击遮罩关闭层
+			area : [ '50%', '65%' ],
+			content : '/toDomainGenerate'
+		});
+	});
+</script>
+</html>

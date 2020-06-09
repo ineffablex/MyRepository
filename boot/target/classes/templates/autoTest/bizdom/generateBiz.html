@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
+	xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<style>
+	.wai{
+		width: 90%;
+		height: 92%;
+		margin: 0 auto;
+	}
+	.top{
+		width: 100%;
+		height: 5%;
+	}
+	.bottom{
+		width: 100%;
+		height: 10%;
+		margin-top: 5%;
+	}
+	.top_left{
+		width: 40%;
+		height: 100%;
+		float: left;
+	}
+	.top_right{
+		width: 40%;
+		height: 100%;
+		float: left;
+	}
+	.xuhao_on{
+		width: 5%;
+		height: 80%;
+		background: #006699;
+		vertical-align: middle;
+		font-size: 43px;
+		text-align:center;
+		font-weight:bolder;
+		color:#fff;
+		margin-top: 5%;
+		float:left;
+	}
+	.xuhao_text{
+		width: 240px;
+		height: 40px;
+		vertical-align: middle;
+		font-size: 32px;
+		text-align:center;
+		color:#666;
+		margin-top: 6%;
+		float:left;
+	}
+	.xuhao_off{
+		width: 60px;
+		height: 60px;
+		background: #bbb;
+		vertical-align: middle;
+		font-size: 43px;
+		text-align:center;
+		font-weight:bolder;
+		color:#fff;
+		margin-top: 5%;
+		float:left;
+	}
+	.middle{
+		width: 100%;
+		height: 68%;
+		margin-top: 30px;
+	}
+	.middle_top{
+		width: 100%;
+		height: 34%;
+		border: 1px solid #ddd;
+		cursor: pointer;
+		background-color: #fff;
+		transition:background-color 0.5s;
+	}
+	
+	.middle_top:hover{
+		background-color: #ddd;
+		transition:background-color 0.5s;
+	}
+	
+	.middle_middle{
+		width: 100%;
+		height:34%;
+		border: 1px solid #ddd;
+		margin-top: 2%;
+		cursor: pointer;
+		background-color: #fff;
+		transition:background-color 0.5s;
+	}
+	
+	.middle_middle:hover{
+		background-color: #ddd;
+		transition:background-color 0.5s;
+	}
+	.middle_bottom{
+		width: 100%;
+		height:26%;
+		border:1px solid #FFCC33;
+		background:rgba(255,220,153,0.7);
+		margin-top: 2%;
+		border-radius:10px;
+	}
+	.middle_icon{
+		width: 17%;
+		height: 100%;
+		background:#eee;
+	}
+	.btn1{
+		width:15%;
+		height: 40px;;
+		border-radius: 20px;
+		border:1px solid #146892e6;
+		background: #fff;
+		float: right;
+		font-size:20px;
+		margin-right: 40px;
+		text-align: center;
+		cursor: pointer;
+		color:#146892e6;
+		line-height: 40px;
+		transition:background 0.3s,color 0.3s;
+	}
+	.btn2{
+		width:15%;
+		height: 40px;;
+		border-radius: 20px;
+		background: #146892e6;
+		float: right;
+		font-size:20px;
+		text-align: center;
+		cursor: pointer;
+		color:#fff;
+		line-height: 40px;
+		transition:background 0.3s,color 0.3s;
+	}
+	
+	.btn1:hover{
+		color:#fff;
+		background: #146892e6;
+		transition:background 0.3s,color 0.3s;
+	}
+	
+	.btn2:hover{
+		background: #5d7886f2;
+		color:#fff;
+		transition:background 0.3s,color 0.3s;
+	}
+	
+	.content{
+		width:90%;
+		height:90%;
+		margin-top:5%;
+		margin: 0 auto;
+	}
+	.title{
+		width:100%;
+		margin-top:2%;
+		font-weight: bold;
+		color: #333;
+		font-size: 13px;
+		float: left;
+	}
+	.mess{
+		width:100%;
+		margin-top:2%;
+		color: #999;
+		font-size: 10px;
+		float: left;
+	}
+</style>
+<body style="background-color: #fff;margin: 0 auto;">
+	<div class = "wai" >
+		<div class = "top">
+			<!-- <div class="top_left">
+				<div class = "xuhao_on">1</div>
+				<div class = "xuhao_text">上传套餐</div>
+			</div>
+			<div class="top_right">
+				<div class = "xuhao_off">2</div>
+				<div class = "xuhao_text">生成用例</div>
+			</div> -->
+		</div> 
+		<div class = "middle">
+			<div id = "download" class="middle_top">
+				<div class="content">
+					<span class = "title">
+						填写导入的数据信息
+					</span>
+					<span class = "mess">
+						请按照下载模板填充产品编码，文本中按行来分割不同的产品编码注意格式。
+					</span>
+				</div>
+				<!-- <div class="middle_icon">
+					<span class="glyphicon glyphicon-cloud-download" aria-hidden="true" style="font-size: 70px;color:#bbb;margin-top: 40px;margin-left: 50px;"></span>
+				</div> -->
+			</div>
+			<div id="upload" class="middle_middle">
+				<div class="content">
+					<span class = "title">
+						上传填好的信息表
+					</span>
+					<span class = "mess">
+						生成文件为zip压缩文件，文件内包括各个产品编码的文件夹。
+					</span>
+				</div>
+				<!-- <div class="middle_icon">
+					<span class="glyphicon glyphicon-cloud-upload" aria-hidden="true" style="font-size: 70px;color:#bbb;margin-top: 40px;margin-left: 50px;"></span>
+				</div> -->
+			</div>
+			<div class="middle_bottom">
+				<div class="content">
+					<span class = "mess">
+						友情提示:请使用谷歌浏览器!
+						导入过程中发现同名产品编码会进行过滤，不会存在多份同名产品编码
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class = "bottom">
+			<div class = "btn2" id = "gen">生成</div>
+			<div class = "btn1" id = "close">取消</div>
+		</div>
+	</div>
+	<div th:include="include::footer"></div>
+</body>
+
+<script type="text/javascript" src="/js/plugins/layuiv2/layui.js"></script>
+<script src="/js/ajax-util.js"></script>
+<script>
+
+	var upload;
+	layui.use('upload', function() {
+		upload = layui.upload;
+		//创建一个上传组件
+		upload.render({
+		    elem: '#upload'
+		    ,url: '/getDomFile' //改成您自己的上传接口
+		    ,exts:'txt'
+		    ,auto: false
+		    //,multiple: true
+		    ,bindAction: '#gen'
+		    ,done: function(res){
+		      if(res.msg == "生成成功")
+		    	  {
+		    	  	var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+		    	  	parent.layer.close(index); //再执行关闭   
+		    	  	parent.layer.msg('生成成功');
+		    	  	location.href = "/download/?path=" + res.data;
+		    	  }
+		      else{
+		    	  parent.layer.msg(res.data);
+		      }
+		      pageDetail(res.detailList);
+		    }
+		  });
+		$("#close").click(function(){
+			var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+    	  	parent.layer.close(index); //再执行关闭   
+		});
+	})
+	
+	function pageDetail(lis){
+		var html;
+		html += "<style> ";
+		html += "table { ";
+		html += "    width: 100%; ";
+		html += "     padding: 0 ; ";
+		html += "margin: 20 auto; ";
+		html += "border-collapse: collapse; ";
+		html += "} ";
+		html += "td,th { ";
+        html += "border: 1px solid #ddd; ";
+        html += "padding: 6px 6px 6px 12px; ";
+        html += "color: #4f6b72; ";
+        html += "text-align: center; ";
+        html += "} ";
+        html += "th { ";
+        html += "    background: #d3d3d3; ";
+        html += "} ";
+    	html += "</style> ";
+		html += "<div style='margin:0 auto;width:90%;'>"; 
+		html += "<table>"; 
+		html += "<tr><th>产品编码</th><th>产品状态</th><th>产品处理信息</th>"; 
+		html += "</tr>";
+		for(let key in lis){
+			if(lis[key].status==0){
+				html +="<tr><td>"+lis[key].procode+"</td><td style='color:red;'>失败</td><td>"+lis[key].dealMsg+"</td></tr>";
+			}
+			else{
+				html +="<tr><td>"+lis[key].procode+"</td><td style='color:green;'>成功</td><td>"+lis[key].dealMsg+"</td></tr>";
+			}
+			
+		}
+		html += "</table>"; 
+		html += "</div>"; 
+		parent.layer.open({
+			type : 1,
+			title : '生成结果',
+			maxmin : false,
+			shadeClose : false, // 点击遮罩关闭层
+			area : [ '50%', '65%' ],
+			content : html
+		}); 
+	}
+	
+	$("#download").click(function(){
+		location.href ="../../../templatefile/product_id.txt";
+	});
+	
+</script>
+</html>
